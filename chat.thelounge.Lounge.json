@@ -25,7 +25,9 @@
           "/app/bin/yarn install",
           "mkdir -p /app/lounge-electron /app/bin",
           "cp -ra * /app/lounge-electron",
-          "install lounge-electron /app/bin"
+          "install lounge-electron /app/bin",
+          "mkdir -p /app/share/applications",
+          "install lounge.desktop /app/share/applications/chat.thelounge.Lounge.desktop"
         ],
         "build-options": {
           "build-args": [
@@ -40,7 +42,7 @@
           },
           {
             "type": "file",
-            "path": "chat.thelounge.Lounge.desktop"
+            "path": "lounge.desktop"
           },
           {
             "type": "script",
