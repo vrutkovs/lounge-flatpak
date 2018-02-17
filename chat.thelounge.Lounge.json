@@ -74,11 +74,10 @@
             "buildsystem": "simple",
             "build-commands": [
               "/app/bin/yarn install",
+              "NODE_ENV=production npm run build",
               "mkdir -p /app/lounge /app/bin",
               "cp -ra * /app/lounge",
-              "cd /app/lounge",
-              "NODE_ENV=production npm run build",
-              "install lounge /app/bin"
+              "install lounge /app/bin",
             ],
             "build-options": {
               "build-args": [
