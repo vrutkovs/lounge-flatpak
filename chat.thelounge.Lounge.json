@@ -78,6 +78,7 @@
               "mkdir -p /app/lounge /app/bin",
               "cp -ra * /app/lounge",
               "install lounge /app/bin",
+              "install client/img/logo-64.png /app/share/icons/hicolor/64x64/apps/chat.thelounge.Lounge.png"
             ],
             "build-options": {
               "build-args": [
