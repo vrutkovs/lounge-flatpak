@@ -2,5 +2,5 @@
 Type=Application
 Name=The Lounge (Flatpak)
 Icon=chat.thelounge.Lounge
-Exec=/app/bin/lounge-electron.sh
+Exec=/app/bin/lounge-electron
 Categories=Network;
