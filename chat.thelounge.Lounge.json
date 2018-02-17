@@ -1,0 +1,41 @@
+{
+    "app-id": "chat.thelounge.Lounge",
+    "runtime": "org.freedesktop.Sdk",
+    "runtime-version": "1.6",
+    "base": "io.atom.electron.BaseApp",
+    "base-version": "master",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "thelounge",
+    "rename-desktop-file": "thelounge.desktop",
+    "separate-locales": false,
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=pulseaudio",
+        "--share=network",
+        "--device=dri",
+        "--filesystem=host",
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.freedesktop.secrets"
+    ],
+    "modules": [
+      {
+        "name": "lounge",
+        "buildsystem": "simple",
+        "build-commands": [
+          "yarn install --install=/app"
+        ],
+        "build-options": {
+          "build-args": [
+            "--share=network"
+          ]
+        },
+        "sources": [
+          {
+            "type": "git",
+            "url": "https://github.com/thelounge/thelounge-electron"
+          }
+        ]
+      }
+    ]
+  }
