@@ -5,8 +5,7 @@
     "base": "io.atom.electron.BaseApp",
     "base-version": "master",
     "sdk": "org.freedesktop.Sdk",
-    "command": "thelounge",
-    "rename-desktop-file": "thelounge.desktop",
+    "command": "yarn",
     "separate-locales": false,
     "finish-args": [
         "--share=ipc",
@@ -14,16 +13,19 @@
         "--socket=pulseaudio",
         "--share=network",
         "--device=dri",
-        "--filesystem=host",
+        "--persist=.lounge",
         "--talk-name=org.freedesktop.Notifications",
         "--talk-name=org.freedesktop.secrets"
     ],
     "modules": [
       {
-        "name": "lounge",
+        "name": "lounge-electron",
         "buildsystem": "simple",
         "build-commands": [
-          "yarn install --install=/app"
+          "/app/bin/yarn install",
+          "mkdir -p /app/lounge-electron /app/bin",
+          "cp -ra * /app/lounge-electron",
+          "install lounge-electron /app/bin"
         ],
         "build-options": {
           "build-args": [
@@ -33,7 +35,71 @@
         "sources": [
           {
             "type": "git",
-            "url": "https://github.com/thelounge/thelounge-electron"
+            "url": "https://github.com/vrutkovs/thelounge-electron",
+            "branch": "flatpak"
+          },
+          {
+            "type": "file",
+            "path": "chat.thelounge.Lounge.desktop"
+          },
+          {
+            "type": "script",
+            "dest-filename": "lounge-electron",
+            "commands": [
+              "cd /app/lounge-electron",
+              "env LOUNGE_HOME=~/.lounge yarn start"
+            ]
+          }
+        ],
+        "modules": [
+          {
+            "name": "yarn",
+            "buildsystem": "simple",
+            "build-commands": [
+              "mkdir -p /app/share/yarn",
+              "cp -a * /app/share/yarn/",
+              "ln -s /app/share/yarn/bin/yarn /app/bin/yarn",
+              "ln -s /app/share/yarn/bin/yarnpkg /app/bin/yarnpkg"
+            ],
+            "sources": [
+              {
+                "type": "archive",
+                "url": "https://github.com/yarnpkg/yarn/releases/download/v1.3.2/yarn-v1.3.2.tar.gz",
+                "sha256": "6cfe82e530ef0837212f13e45c1565ba53f5199eec2527b85ecbcd88bf26821d"
+              }
+            ]
+          },
+          {
+            "name": "lounge",
+            "buildsystem": "simple",
+            "build-commands": [
+              "/app/bin/yarn install",
+              "mkdir -p /app/lounge /app/bin",
+              "cp -ra * /app/lounge",
+              "cd /app/lounge",
+              "NODE_ENV=production npm run build",
+              "install lounge /app/bin"
+            ],
+            "build-options": {
+              "build-args": [
+                "--share=network"
+              ]
+            },
+            "sources": [
+              {
+                "type": "archive",
+                "url": "https://github.com/thelounge/lounge/archive/v2.7.0.tar.gz",
+                "sha256": "040511b320b3158b23553c35c5536eeba4007a0a9d9925def637a01db2b87994"
+              },
+              {
+                "type": "script",
+                "dest-filename": "lounge",
+                "commands": [
+                  "cd /app/lounge",
+                  "yarn start"
+                ]
+              }
+            ]
           }
         ]
       }
