@@ -5,7 +5,7 @@
     "base": "io.atom.electron.BaseApp",
     "base-version": "master",
     "sdk": "org.freedesktop.Sdk",
-    "command": "yarn",
+    "command": "/app/bin/lounge-electron",
     "separate-locales": false,
     "finish-args": [
         "--share=ipc",
