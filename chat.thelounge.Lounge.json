@@ -92,7 +92,7 @@
               {
                 "type": "archive",
                 "url": "https://github.com/thelounge/lounge/archive/v2.7.0.tar.gz",
-                "sha256": "040511b320b3158b23553c35c5536eeba4007a0a9d9925def637a01db2b87994"
+                "sha256": "09cd7615d3c57173494bc0796eef06b5dadcb08959649c717159dc3a1b3ea7eb"
               },
               {
                 "type": "script",
