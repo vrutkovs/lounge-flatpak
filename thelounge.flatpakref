@@ -1,0 +1,8 @@
+[Flatpak Ref]
+Title=Unofficial The Lounge builds
+Name=chat.thelounge.Lounge
+Branch=master
+Url=https://vrutkovs.github.io/lounge-flatpak/repo
+IsRuntime=False
+RuntimeRepo=https://flathub.org/repo/flathub.flatpakrepo
+Comment=The Lounge is an IRC client
