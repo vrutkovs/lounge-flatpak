@@ -38,7 +38,7 @@
           {
             "type": "git",
             "url": "https://github.com/vrutkovs/thelounge-electron",
-            "branch": "flatpak"
+            "branch": "flatpak-stable"
           },
           {
             "type": "file",
